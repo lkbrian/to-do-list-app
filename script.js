@@ -1,35 +1,63 @@
 const form = document.querySelector("form");
 let userInput = document.querySelector("#todotask");
+  let taskData = document.querySelector(".todo-content");
+
 form.addEventListener("submit", (event) => {
   event.preventDefault();
+  createTodo(event);
+  form.reset();
+});
+
+function createTodo(event) {
   let task = event.target.todotask.value;
   let description = event.target.description.value;
   let date = new Date();
   const wraptask = document.createElement("div");
   wraptask.className = "wraptask";
   wraptask.innerHTML = `
-    <div class="taskitems">
+  <i class="fa-solid fa-trash-can btn"></i>
+  <div class="taskitems">
     <h3 id="tasktitle">${task}</h3>
     <p id="taskdesc">${description}</p>
     </div>
     <div id="actions">
-    <span id="date">${date.toDateString()}</span>
-    <span id="time">${date.toLocaleTimeString()}</span>  
-    <div>
-    <i class="fa-solid fa-trash-can" id="btn"></i>
+    <p id="date">${date.toDateString()}</p>
+    <p id="time">${date.toLocaleTimeString()}</p>  
     </div>    
-    </div>
     `;
-  document.querySelector("section").appendChild(wraptask);
-  delet();
-  form.reset();
-});
+  let taskcard = document.querySelector(".todo-content");
+  taskcard.appendChild(wraptask);
+  document.querySelector('.empty').textContent = 'Task list'
+  let deleteButtons = document.querySelectorAll(".btn");
 
-function delet() {
-  let delet = document.querySelector("#btn");
-  delet.addEventListener("click", (event) => {
-    event.preventDefault();
-    let removebtn = event.target.parentNode.parentNode.parentNode;
-    removebtn.remove();
+  deleteButtons.forEach((deleteButton) => {
+    deleteButton.addEventListener("click", handleDelet);
   });
 }
+
+function handleDelet(event) {
+  event.target.parentNode.remove();
+}
+function clock() {
+  let time = new Date();
+  let options = { weekday: "long" };
+  let day = time.toLocaleDateString("en-US", options);
+  let hours = time.getHours();
+  let minutes = time.getMinutes();
+  let seconds = time.getSeconds();
+  hours = checkTime(hours);
+  minutes = checkTime(minutes);
+  seconds = checkTime(seconds);
+  document.getElementById("clock").innerHTML =
+    hours + ":" + minutes + ":" + seconds;
+  setTimeout(clock, 1000);
+  document.querySelector("#day").textContent = day;
+}
+clock();
+function checkTime(i) {
+  if (i < 10) {
+    i = "0" + i;
+  } // add zero in front of numbers < 10
+  return i;
+}
+

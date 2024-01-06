@@ -19,23 +19,25 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <title>To Do App</title>
   </head>
   <body>
     <section id="todocontainer">
-      <form id="todocard">
-        <h1>To Do List</h1>
-        <label for="todotask">Task</label>
-        <input type="text" id="todotask" required />
-        <label for="description">Describe your task here</label>
-        <textarea
-          name="description"
-          id="description"
-          cols="30"
-          rows=""
-        ></textarea>
-    <input type="submit" />
-        
+      <form id="todocard" autocomplete="off">
+        <h1 id="apptitle">To Do</h1>
+        <header>
+          <h1 id="day"></h1>
+          <h1 id="clock"></h1>
+        </header>
+        <input type="text" id="todotask" required placeholder="enter your task here..."/>
+        <input id="description" placeholder="describe your task here..."></input>
+    <input type="submit" id ="submit"/>
       </form>
     </section>
+<section class="todo-section">
+  <div class="todo-content">
+<p class="empty">your task will go here...</p>
+  </div>
+</section>
   </body>
 </html>
