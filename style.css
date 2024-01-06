@@ -35,11 +35,10 @@ header {
 
 #todocard header h1 {
   font-weight: bold;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 #apptitle{
   font-size: 2rem;
-  text-align: center;
 }
 #todotask,
 #description {
@@ -84,7 +83,7 @@ header {
   align-items: end;
   gap: 6px;
 }
-.btn {
+.btn,.edit,.complete{
   font-size: 1rem;
   cursor: pointer;
 }
@@ -104,6 +103,9 @@ header {
   border-radius: 4px;
   margin-top: 30px;
 }
+.todo-content:empty{
+  display: none;
+}
 .todo-section {
   display: flex;
   flex-direction: column;
@@ -119,11 +121,12 @@ header {
 }
 #tasktitle {
   font-weight: 500;
-  font-size: 1.1rem;
+  font-size: 1rem;
   padding: 2px;
 }
 #taskdesc {
   font-weight: 300;
+  font-size: .9rem;
   padding: 2px;
 }
 @media only screen and (max-width: 600px) {

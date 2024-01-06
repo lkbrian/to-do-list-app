@@ -1,6 +1,6 @@
 const form = document.querySelector("form");
 let userInput = document.querySelector("#todotask");
-  let taskData = document.querySelector(".todo-content");
+let taskData = document.querySelector(".todo-content");
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -27,7 +27,9 @@ function createTodo(event) {
     `;
   let taskcard = document.querySelector(".todo-content");
   taskcard.appendChild(wraptask);
-  document.querySelector('.empty').textContent = 'Task list'
+
+  saveData();
+
   let deleteButtons = document.querySelectorAll(".btn");
 
   deleteButtons.forEach((deleteButton) => {
@@ -37,6 +39,7 @@ function createTodo(event) {
 
 function handleDelet(event) {
   event.target.parentNode.remove();
+  saveData();
 }
 function clock() {
   let time = new Date();
@@ -61,3 +64,19 @@ function checkTime(i) {
   return i;
 }
 
+function saveData() {
+  localStorage.setItem("todos", taskData.innerHTML);
+  console.log("saved data");
+}
+
+function showTasks() {
+  taskData.innerHTML = localStorage.getItem("todos");
+  console.log("got the data");
+}
+showTasks();
+
+taskData.addEventListener("click", (event) => {
+  if (event.target.classList.contains("btn")) {
+    handleDelet(event);
+  }
+});
